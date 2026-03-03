@@ -5,293 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CarLend | Alquiler de Coches Premium</title>
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --brand-orange: #ff6600;
-            --brand-dark: #121212;
-            --white: #ffffff;
-            --bg-light: #f4f7f6;
-            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            
-            /* Variables dinámicas para el Modo Claro */
-            --bg-main: var(--bg-light);
-            --text-main: var(--brand-dark);
-            --card-bg: var(--white);
-            --search-bg: rgba(255, 255, 255, 0.9);
-            --input-border: #eee;
-            --nav-link-color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* Configuración de Modo Oscuro */
-        body.dark-mode {
-            --bg-main: #121212;
-            --text-main: #f4f7f6;
-            --card-bg: #1e1e1e;
-            --search-bg: rgba(30, 30, 30, 0.95);
-            --input-border: #333;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--bg-main); /* Usamos la variable */
-            color: var(--text-main); /* Usamos la variable */
-            line-height: 1.6;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        h1, h2, h3 { font-family: 'Lexend', sans-serif; letter-spacing: -0.5px; }
-
-        /* --- NAVIGATION --- */
-        nav {>
-            background: rgb(95, 94, 94);
-            padding: 15px 8%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        nav img { height: 100px; width: auto; transition: var(--transition); }
-        nav img:hover { transform: scale(1.05); }
-
-        .nav-links { display: flex; align-items: center; }
-
-        .nav-links a {
-            text-decoration: none;
-            margin-left: 30px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: var(--transition);
-            color: var(--nav-link-color);
-        }
-        .nav-links a:hover { color: var(--brand-orange); }
-
-        /* BOTÓN DE MODO OSCURO */
-        .mode-toggle-btn {
-            background: none;
-            border: 1px solid var(--brand-orange);
-            color: var(--brand-orange);
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            margin-left: 30px;
-            font-weight: 600;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-        .mode-toggle-btn:hover { background: var(--brand-orange); color: white; }
-
-        /* --- HERO PREMIUM --- */
-        .hero {
-            position: relative;
-            height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            text-align: center;
-            overflow: hidden;
-            background: var(--brand-dark);
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), 
-                              url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            padding: 0 20px;
-        }
-
-        .hero-content h1 { 
-            font-size: clamp(2.5rem, 6vw, 4.5rem); 
-            font-weight: 800; 
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            opacity: 0.9;
-        }
-
-        /* --- BUSCADOR GLASSMORPHISM --- */
-        .search-bar {
-            background: var(--search-bg); /* Variable */
-            backdrop-filter: blur(20px);
-            padding: 35px;
-            border-radius: 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            width: 90%;
-            max-width: 1200px;
-            margin: -60px auto 0;
-            position: relative;
-            z-index: 10;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .input-group label { 
-            display: block;
-            font-size: 0.7rem; 
-            font-weight: 800; 
-            color: #888; 
-            margin-bottom: 8px; 
-            text-transform: uppercase; 
-        }
-
-        .input-group input, .input-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--input-border);
-            border-radius: 8px;
-            background: transparent;
-            color: var(--text-main);
-            font-size: 0.95rem;
-            transition: var(--transition);
-        }
-
-        .input-group input:focus { border-color: var(--brand-orange); outline: none; }
-
-        .btn-reserve {
-            background: var(--brand-orange);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 800;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-reserve:hover { 
-            background: #e65c00; 
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(255,102,0,0.3);
-        }
-
-        /* --- SECCIÓN DE FLOTA --- */
-        .section { padding: 100px 8%; }
-        .section-header { text-align: center; margin-bottom: 60px; }
-        .section-header h2 { font-size: 2.5rem; color: var(--text-main); }
-        .section-header .line { width: 60px; height: 4px; background: var(--brand-orange); margin: 15px auto; border-radius: 2px; }
-
-        .car-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .car-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            transition: var(--transition);
-            border: 1px solid var(--input-border);
-        }
-
-        .car-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-
-        .car-img {
-            width: 100%;
-            height: 220px;
-            background-size: cover;
-            background-position: center;
-            transition: var(--transition);
-        }
-        
-        .car-card:hover .car-img { transform: scale(1.05); }
-
-        .car-info { padding: 25px; }
-        .car-info h3 { font-size: 1.3rem; margin-bottom: 10px; color: var(--text-main); }
-        .price-tag { font-size: 1.8rem; font-weight: 800; color: var(--brand-orange); }
-        .price-tag span { font-size: 0.9rem; color: #999; font-weight: 400; }
-
-        /* --- INFO STRIP --- */
-        .features-strip {
-            background: var(--brand-dark);
-            color: white;
-            padding: 60px 8%;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 30px;
-            text-align: center;
-        }
-
-        .feature-item h4 { font-size: 2rem; color: var(--brand-orange); margin-bottom: 5px; }
-        .feature-item p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #0a0a0a;
-            color: #777;
-            padding: 80px 8% 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 50px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h4 { color: var(--white); margin-bottom: 25px; font-size: 1.1rem; }
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; font-size: 0.9rem; }
-        .footer-col a { color: #777; text-decoration: none; transition: 0.3s; }
-        .footer-col a:hover { color: var(--brand-orange); }
-
-        /* --- ARREGLO DE ENLACES DINÁMICOS --- */
-
-/* MODO DÍA (Por defecto) */
-nav .nav-links a {
-    color: #000000 !important; /* Forzamos negro en modo día */
-}
-
-/* MODO NOCHE (Cuando el body tiene la clase dark-mode) */
-body.dark-mode nav .nav-links a {
-    color: #ffffff !important; /* Forzamos blanco en modo noche */
-}
-
-/* El botón de Área Cliente y el hover los mantenemos en naranja */
-nav .nav-links a[style*="background"], 
-nav .nav-links a:hover {
-    color: #ffffff !important; 
-}
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body id="mainBody">
+
+<body>
 
     <nav id="navbar">
         <img src="./IMG/carlendlogo.png" alt="CarLend Logo">
+
         <div class="nav-links">
             <a href="flota.html">Flota</a>
             <a href="#">Sedes</a>
             <a href="#">Ofertas</a>
-            <a href="cliente.html" style="background: var(--brand-orange); color: white; padding: 12px 25px; border-radius: 8px;">Área Cliente</a>
+            <a href="cliente.html" class="btn-client">Área Cliente</a>
             <button class="mode-toggle-btn" id="themeBtn">Modo Noche</button>
         </div>
     </nav>
@@ -303,7 +29,7 @@ nav .nav-links a:hover {
         </div>
     </header>
 
-    <div class="search-bar">
+    <section class="search-bar">
         <div class="input-group">
             <label>Punto de Recogida</label>
             <select>
@@ -313,25 +39,29 @@ nav .nav-links a:hover {
                 <option>Sevilla - Santa Justa</option>
             </select>
         </div>
+
         <div class="input-group">
             <label>Fecha Recogida</label>
             <input type="date">
         </div>
+
         <div class="input-group">
             <label>Fecha Devolución</label>
             <input type="date">
         </div>
+
         <div class="input-group">
             <label>Categoría</label>
             <select>
                 <option>Cualquier modelo</option>
                 <option>Deportivos</option>
-                <option>Suv & Familiar</option>
+                <option>SUV & Familiar</option>
                 <option>Económicos</option>
             </select>
         </div>
+
         <button class="btn-reserve">Buscar Coche</button>
-    </div>
+    </section>
 
     <section id="flota" class="section">
         <div class="section-header">
@@ -341,38 +71,40 @@ nav .nav-links a:hover {
         </div>
 
         <div class="car-grid">
+
             <div class="car-card">
-                <div class="car-img" style="background-image: url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="car-img" style="background-image: url('IMG/Fondo-index.jpeg');"></div>
                 <div class="car-info">
                     <h3>Performance GT S-Line</h3>
                     <p class="price-tag">55.00€ <span>/ día</span></p>
-                    <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">Seguro Premium · Cancelación Flexible</p>
+                    <p class="car-features">Seguro Premium · Cancelación Flexible</p>
                 </div>
             </div>
 
             <div class="car-card">
-                <div class="car-img" style="background-image: url('https://images.unsplash.com/photo-1583121274602-3e2820c69888?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="car-img" style="background-image: url('IMG/Ferrari-imagen.jpeg');"></div>
                 <div class="car-info">
                     <h3>Grand SUV Explorer 4x4</h3>
                     <p class="price-tag">72.50€ <span>/ día</span></p>
-                    <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">Ideal para viajes largos · GPS Integrado</p>
+                    <p class="car-features">Ideal para viajes largos · GPS Integrado</p>
                 </div>
             </div>
 
             <div class="car-card">
-                <div class="car-img" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="car-img" style="background-image: url('IMG/Auto-Azul.jpeg');"></div>
                 <div class="car-info">
                     <h3>City Urban Compact</h3>
                     <p class="price-tag">29.90€ <span>/ día</span></p>
-                    <p style="font-size: 0.8rem; color: #888; margin-top: 15px;">Bajas emisiones · Fácil aparcamiento</p>
+                    <p class="car-features">Bajas emisiones · Fácil aparcamiento</p>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <div class="features-strip">
+    <section class="features-strip">
         <div class="feature-item">
-            <h4> 200ms</h4>
+            <h4>200ms</h4>
             <p>Velocidad de Respuesta</p>
         </div>
         <div class="feature-item">
@@ -387,14 +119,16 @@ nav .nav-links a:hover {
             <h4>24/7</h4>
             <p>Soporte al Cliente</p>
         </div>
-    </div>
+    </section>
 
     <footer>
         <div class="footer-grid">
+
             <div class="footer-col">
-                <h4 style="font-weight: 800;">CARLEND</h4>
+                <h4>CARLEND</h4>
                 <p>Tu plataforma líder en gestión de vehículos con tecnología de reserva circular infinita y seguridad garantizada.</p>
             </div>
+
             <div class="footer-col">
                 <h4>Servicios</h4>
                 <ul>
@@ -403,6 +137,7 @@ nav .nav-links a:hover {
                     <li><a href="seguro.html">Seguro a Todo Riesgo</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h4>Soporte</h4>
                 <ul>
@@ -412,31 +147,49 @@ nav .nav-links a:hover {
                     <li><a href="admin.html" style="opacity: 0.5;">Acceso Staff</a></li>
                 </ul>
             </div>
+
         </div>
-        <div style="border-top: 1px solid #222; padding-top: 30px; text-align: center; font-size: 0.8rem;">
+
+        <div class="footer-bottom">
             &copy; 2026 CarLend S.L. - Eficiencia en cada kilómetro.
         </div>
     </footer>
 
     <script>
-        const themeBtn = document.getElementById('themeBtn');
+        const navbar = document.getElementById("navbar");
+        const hero = document.querySelector(".hero");
+        const themeBtn = document.getElementById("themeBtn");
         const body = document.body;
 
-        // Comprobar si el usuario ya tenía una preferencia guardada
-        if (localStorage.getItem('theme') === 'dark') {
-            body.classList.add('dark-mode');
-            themeBtn.textContent = 'Modo Día';
+        function adjustHeroSpacing() {
+            hero.style.marginTop = navbar.offsetHeight + "px";
         }
 
-        themeBtn.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-            
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('theme', 'dark');
-                themeBtn.textContent = 'Modo Día';
+        window.addEventListener("load", adjustHeroSpacing);
+        window.addEventListener("resize", adjustHeroSpacing);
+
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
             } else {
-                localStorage.setItem('theme', 'light');
-                themeBtn.textContent = 'Modo Noche';
+                navbar.classList.remove("scrolled");
+            }
+        });
+
+        if (localStorage.getItem("theme") === "dark") {
+            body.classList.add("dark-mode");
+            themeBtn.textContent = "Modo Día";
+        }
+
+        themeBtn.addEventListener("click", () => {
+            body.classList.toggle("dark-mode");
+
+            if (body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeBtn.textContent = "Modo Día";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeBtn.textContent = "Modo Noche";
             }
         });
     </script>
