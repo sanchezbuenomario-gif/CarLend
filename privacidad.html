@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | CarLend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-orange: #ff6600;
+            --brand-dark: #121212;
+            --text-main: #333;
+            --bg-light: #f9f9f9;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            line-height: 1.8; 
+            color: var(--text-main); 
+            background: var(--bg-light);
+        }
+
+        /* --- HEADER SIMPLIFICADO --- */
+        header {
+            background: var(--brand-dark);
+            color: white;
+            padding: 60px 8%;
+            text-align: center;
+        }
+        header h1 { font-family: 'Lexend'; font-size: 2.5rem; margin-bottom: 10px; }
+        header p { opacity: 0.7; font-weight: 300; }
+
+        /* --- CONTENIDO --- */
+        .content-container {
+            max-width: 900px;
+            margin: -40px auto 60px;
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            z-index: 10;
+        }
+
+        section { margin-bottom: 40px; }
+        h2 { 
+            font-family: 'Lexend'; 
+            color: var(--brand-dark); 
+            border-left: 4px solid var(--brand-orange); 
+            padding-left: 15px; 
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        p { margin-bottom: 15px; font-size: 0.95rem; color: #555; }
+        
+        ul { margin-left: 20px; margin-bottom: 20px; color: #555; }
+        li { margin-bottom: 8px; }
+
+        .highlight-box {
+            background: #fff5f0;
+            border: 1px solid #ffe0d0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 20px;
+            color: var(--brand-orange);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .btn-back:hover { text-decoration: underline; }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Privacidad y Seguridad</h1>
+        <p>Tu confianza es nuestro motor. Cómo protegemos tus datos en CarLend.</p>
+    </header>
+
+    <main class="content-container">
+        <a href="index.html" class="btn-back">← Volver al inicio</a>
+        
+        <section style="margin-top: 30px;">
+            <h2>1. Responsable del Tratamiento</h2>
+            <p>CarLend S.L., con domicilio social en Jaén, España, es la entidad responsable del tratamiento de tus datos personales recogidos a través de nuestra plataforma de reserva de vehículos.</p>
+        </section>
+
+        <section>
+            <h2>2. Datos que Recopilamos</h2>
+            <p>Para garantizar un servicio de préstamo eficiente y seguro, recopilamos los siguientes datos:</p>
+            <ul>
+                <li><strong>Identificación:</strong> Nombre, apellidos y DNI/Pasaporte.</li>
+                <li><strong>Contacto:</strong> Correo electrónico y número de teléfono.</li>
+                <li><strong>Validación Legal:</strong> Copia digital del carnet de conducir (Requisito ASI 2).</li>
+                <li><strong>Financieros:</strong> Datos de pago procesados de forma encriptada.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Finalidad del Tratamiento</h2>
+            <p>Utilizamos tus datos para:</p>
+            <ul>
+                <li>Gestionar la reserva y el bloqueo de disponibilidad del vehículo.</li>
+                <li>Calcular automáticamente el importe del préstamo según nuestra tarifa diaria.</li>
+                <li>Prevenir el fraude y garantizar la concurrencia de reservas.</li>
+            </ul>
+            <div class="highlight-box">
+                <strong>Nota sobre Seguridad:</strong> En cumplimiento con nuestra infraestructura AWS (IAS 9), tus datos se almacenan en servidores redundantes con encriptación de extremo a extremo.
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Conservación de Datos</h2>
+            <p>Los datos relacionados con tus alquileres se conservarán durante el tiempo necesario para cumplir con las obligaciones legales y contables derivadas del servicio prestado.</p>
+        </section>
+
+        <section>
+            <h2>5. Tus Derechos</h2>
+            <p>Tienes derecho a acceder, rectificar o suprimir tus datos en cualquier momento. Puedes ejercer estos derechos desde tu <strong>Área Cliente</strong> o enviando un correo a <em>privacidad@carlend.com</em>.</p>
+        </section>
+
+        <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 30px;">
+        <p style="font-size: 0.8rem; text-align: center;">Última actualización: Marzo 2026</p>
+    </main>
+
+    <footer>
+        &copy; 2026 CarLend S.L. - Sistema de gestión de vehículos diseñado bajo estándares Métrica v3.
+    </footer>
+
+</body>
+</html>

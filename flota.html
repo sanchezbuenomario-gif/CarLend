@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo de Flota | CarLend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --brand-orange: #ff6600; --brand-dark: #121212; --bg-light: #f4f7f6; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--bg-light); margin: 0; }
+        nav { background: #fff; padding: 15px 8%; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .filter-bar { background: var(--brand-dark); color: white; padding: 20px 8%; display: flex; gap: 20px; align-items: center; }
+        .car-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 50px 8%; }
+        .car-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .car-img { height: 200px; background-size: cover; background-position: center; }
+        .car-content { padding: 20px; }
+        .btn-book { background: var(--brand-orange); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; width: 100%; font-weight: bold; }
+        .tag { background: #eee; padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; text-transform: uppercase; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" style="text-decoration:none; color:black; font-family:Lexend; font-weight:800; font-size:1.5rem;">CAR<span style="color:var(--brand-orange)">LEND</span></a>
+        <div class="nav-links">
+            <a href="index.html" style="margin-right:20px; text-decoration:none; color:black;">Inicio</a>
+            <a href="#" style="background:var(--brand-orange); color:white; padding:8px 15px; border-radius:5px; text-decoration:none;">Mis Reservas</a>
+        </div>
+    </nav>
+
+    <div class="filter-bar">
+        <span>Filtrar por:</span>
+        <select style="padding:8px; border-radius:5px;">
+            <option>Todos los vehículos</option>
+            <option>Más económicos</option>
+            <option>Mejor valorados</option>
+        </select>
+        <label><input type="checkbox"> Eléctricos</label>
+        <label><input type="checkbox"> Automáticos</label>
+    </div>
+
+    <div class="car-grid">
+        <div class="car-card">
+            <div class="car-img" style="background-image: url('https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&q=80&w=500');"></div>
+            <div class="car-content">
+                <span class="tag">Económico</span>
+                <h3>Hybrid City Move</h3>
+                <p>Perfecto para Madrid Central. Etiqueta CERO.</p>
+                <p style="font-weight:800; color:var(--brand-orange); font-size:1.2rem;">32€ /día</p>
+                <button class="btn-book">Reservar ahora</button>
+            </div>
+        </div>
+        <div class="car-card">
+            <div class="car-img" style="background-image: url('https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&q=80&w=500');"></div>
+            <div class="car-content">
+                <span class="tag">Familiar</span>
+                <h3>SUV Expedition</h3>
+                <p>7 plazas y maletero XXL para toda la familia.</p>
+                <p style="font-weight:800; color:var(--brand-orange); font-size:1.2rem;">65€ /día</p>
+                <button class="btn-book">Reservar ahora</button>
+            </div>
+        </div>
+        <div class="car-card">
+            <div class="car-img" style="background-image: url('https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&q=80&w=500');"></div>
+            <div class="car-content">
+                <span class="tag">Premium</span>
+                <h3>Executive Sedan</h3>
+                <p>Elegancia y potencia para viajes de negocios.</p>
+                <p style="font-weight:800; color:var(--brand-orange); font-size:1.2rem;">89€ /día</p>
+                <button class="btn-book">Reservar ahora</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

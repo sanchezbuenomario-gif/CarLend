@@ -1,0 +1,176 @@
+:root {
+    --primary: #1a365d;
+    --secondary: #2b6cb0;
+    --accent: #48bb78;
+    --dark: #2d3748;
+    --light: #f7fafc;
+    --border: #e2e8f0;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
+    color: var(--dark);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: var(--primary);
+    color: white;
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 4px solid var(--secondary);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+}
+
+.badge {
+    font-size: 0.9rem;
+    background: var(--secondary);
+    padding: 4px 12px;
+    border-radius: 20px;
+    vertical-align: middle;
+}
+
+/* Tarjetas de Secciones */
+.card {
+    background: white;
+    border-radius: 12px;
+    margin: 30px 0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.card-header {
+    background: #fff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+}
+
+.step-number {
+    background: var(--primary);
+    color: white;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+h2 {
+    color: var(--primary);
+    font-size: 1.4rem;
+}
+
+h3 {
+    margin: 20px 0 10px;
+    font-size: 1.1rem;
+    color: var(--secondary);
+}
+
+/* Listas y Tablas */
+ul {
+    list-style: none;
+    margin: 15px 0;
+}
+
+ul li {
+    margin-bottom: 10px;
+    padding-left: 20px;
+    position: relative;
+}
+
+ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+
+th, td {
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+th {
+    background: var(--light);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Componentes Visuales */
+.formula {
+    background: var(--light);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    font-family: serif;
+    font-style: italic;
+    margin: 15px 0;
+    border-left: 4px solid var(--secondary);
+}
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.tech-item {
+    background: #edf2f7;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.acceptance {
+    background: #f0fff4;
+    border: 1px solid #c6f6d5;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 40px 0;
+    color: #718096;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    header h1 { font-size: 1.8rem; }
+    .tech-grid { grid-template-columns: 1fr; }
+}

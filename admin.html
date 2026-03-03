@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel | CarLend Control Tower</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-orange: #ff6600;
+            --brand-dark: #121212;
+            --sidebar-bg: #000000;
+            --main-bg: #f4f7f6;
+            --text-color: #121212;
+            --card-bg: #ffffff;
+            --border-color: #eee;
+            --transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            --sidebar-bg: #1a1a1a;
+            --main-bg: #0a0a0a;
+            --text-color: #f4f7f6;
+            --card-bg: #161616;
+            --border-color: #333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--main-bg); color: var(--text-color); display: flex; min-height: 100vh; transition: var(--transition); overflow-x: hidden; }
+        h1, h2, h3 { font-family: 'Lexend', sans-serif; }
+
+        /* --- PANTALLA DE LOGIN (MODAL) --- */
+        #login-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--brand-dark); z-index: 9999;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .login-box {
+            background: #fff; padding: 40px; border-radius: 20px; text-align: center;
+            width: 100%; max-width: 400px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .login-box h2 { margin-bottom: 20px; color: #121212; }
+        .login-box input {
+            width: 100%; padding: 15px; margin-bottom: 20px;
+            border: 1px solid #ddd; border-radius: 8px; font-size: 1rem;
+        }
+
+        /* --- SIDEBAR --- */
+        .sidebar {
+            width: 280px; background: var(--sidebar-bg); color: white;
+            padding: 30px 20px; display: flex; flex-direction: column;
+            position: fixed; height: 100vh; z-index: 100;
+        }
+        .sidebar h2 { font-size: 1.5rem; color: var(--brand-orange); margin-bottom: 40px; text-align: center; }
+        
+        .nav-admin { list-style: none; flex-grow: 1; }
+        .nav-admin li { margin-bottom: 8px; }
+        .nav-admin a {
+            color: #ccc; text-decoration: none; padding: 12px 15px;
+            display: block; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        .nav-admin a:hover, .nav-admin a.active { background: var(--brand-orange); color: white; }
+
+        .back-home {
+            margin-top: 20px; padding: 12px; border: 1px dashed #444;
+            text-align: center; color: #888; text-decoration: none;
+            font-size: 0.8rem; border-radius: 8px; transition: 0.3s;
+        }
+        .back-home:hover { border-color: var(--brand-orange); color: white; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content { margin-left: 280px; width: calc(100% - 280px); padding: 40px; }
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 40px; padding-bottom: 20px; border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-card {
+            background: var(--card-bg); border: 1px solid var(--border-color);
+            padding: 25px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px; overflow-x: auto;
+        }
+
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th { text-align: left; padding: 15px; background: rgba(0,0,0,0.02); font-size: 0.75rem; color: #888; text-transform: uppercase; }
+        td { padding: 15px; border-bottom: 1px solid var(--border-color); font-size: 0.9rem; }
+
+        .status { padding: 5px 10px; border-radius: 5px; font-size: 0.7rem; font-weight: 800; }
+        .status.active { background: #e3f9eb; color: #27ae60; }
+        .status.pending { background: #fff4e5; color: #f39c12; }
+        .status.danger { background: #ffebeb; color: #eb5757; }
+
+        .btn-action {
+            background: var(--brand-orange); color: white; border: none;
+            padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer;
+        }
+
+        .theme-toggle {
+            background: transparent; border: 1px solid #444; color: #aaa;
+            padding: 8px; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size: 0.7rem;
+        }
+
+        .admin-section { display: none; }
+        .admin-section.active { display: block; }
+    </style>
+</head>
+<body>
+
+    <div id="login-overlay">
+        <div class="login-box">
+            <h2>Acceso Staff CarLend</h2>
+            <p style="margin-bottom: 20px; font-size: 0.8rem; color: #666;">Introduzca clave de administrador para continuar</p>
+            <input type="password" id="admin-pass" placeholder="Clave maestra">
+            <button class="btn-action" style="width: 100%;" onclick="checkPass()">Entrar al Sistema</button>
+            <p id="error-msg" style="color: red; font-size: 0.8rem; margin-top: 10px; display: none;">Clave incorrecta. Intente de nuevo.</p>
+        </div>
+    </div>
+
+    <aside class="sidebar">
+        <h2>CARLEND ADMIN</h2>
+        <ul class="nav-admin">
+            <li><a href="#" class="active" onclick="showSection('flota')">Gestión de Flota</a></li>
+            <li><a href="#" onclick="showSection('reservas')">Reservas Activas</a></li>
+            <li><a href="#" onclick="showSection('clientes')">Clientes</a></li>
+            <li><a href="#" onclick="showSection('tarifas')">Tarifas y Precios</a></li>
+            <li><a href="#" onclick="showSection('config')">Configuración</a></li>
+        </ul>
+        
+        <button class="theme-toggle" onclick="toggleTheme()">MODO DÍA/NOCHE</button>
+        <a href="index.html" class="back-home">← VOLVER A LA WEB</a>
+    </aside>
+
+    <main class="main-content">
+        
+        <section id="flota" class="admin-section active">
+            <header><h1>Gestión de Flota</h1><button class="btn-action">+ Nuevo Vehículo</button></header>
+            <div class="admin-card">
+                <table>
+                    <thead><tr><th>Modelo</th><th>Matrícula</th><th>Estado</th><th>Combustible</th><th>Acciones</th></tr></thead>
+                    <tbody>
+                        <tr><td>Performance GT S-Line</td><td>4588-LMN</td><td><span class="status active">Disponible</span></td><td>Gasolina</td><td><button class="btn-action">Gestionar</button></td></tr>
+                        <tr><td>Grand SUV Explorer</td><td>1122-KKB</td><td><span class="status pending">En Limpieza</span></td><td>Diesel</td><td><button class="btn-action">Gestionar</button></td></tr>
+                        <tr><td>City Urban Compact</td><td>9900-JJK</td><td><span class="status active">Disponible</span></td><td>Eléctrico</td><td><button class="btn-action">Gestionar</button></td></tr>
+                        <tr><td>Tesla Model S</td><td>7744-TXL</td><td><span class="status danger">En Taller</span></td><td>Eléctrico</td><td><button class="btn-action">Gestionar</button></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="reservas" class="admin-section">
+            <header><h1>Reservas Activas</h1></header>
+            <div class="admin-card">
+                <table>
+                    <thead><tr><th>ID</th><th>Cliente</th><th>Vehículo</th><th>Devolución</th><th>Estado</th></tr></thead>
+                    <tbody>
+                        <tr><td>#CL-9920</td><td>Juan Pérez</td><td>Tesla Model S</td><td>Mañana, 10:00</td><td><span class="status active">Confirmada</span></td></tr>
+                        <tr><td>#CL-9921</td><td>Marta Sánchez</td><td>GT S-Line</td><td>15/03/2026</td><td><span class="status pending">Pendiente Pago</span></td></tr>
+                        <tr><td>#CL-9922</td><td>TechCorp S.A.</td><td>SUV Explorer</td><td>20/03/2026</td><td><span class="status active">Confirmada</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="clientes" class="admin-section">
+            <header><h1>Directorio de Clientes</h1></header>
+            <div class="admin-card">
+                <table>
+                    <thead><tr><th>Nombre</th><th>Email</th><th>Nivel</th><th>Alquileres Totales</th></tr></thead>
+                    <tbody>
+                        <tr><td>Carlos Rodríguez</td><td>carlos@mail.com</td><td>Gold</td><td>14</td></tr>
+                        <tr><td>Beatriz Luna</td><td>b.luna@web.es</td><td>Silver</td><td>3</td></tr>
+                        <tr><td>Global Logistics</td><td>info@global.com</td><td>Corporativo</td><td>42</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="tarifas" class="admin-section">
+            <header><h1>Configuración de Precios</h1></header>
+            <div class="admin-card">
+                <h3>Ajuste Dinámico de Temporada</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div class="admin-card" style="margin:0;"><h4>Cat. Deportivos</h4><input type="text" value="85.00€/día" style="width:100%; padding:10px; margin-top:10px;"></div>
+                    <div class="admin-card" style="margin:0;"><h4>Cat. Familiares</h4><input type="text" value="55.00€/día" style="width:100%; padding:10px; margin-top:10px;"></div>
+                </div>
+                <button class="btn-action" style="margin-top: 20px;">Guardar cambios globales</button>
+            </div>
+        </section>
+
+        <section id="config" class="admin-section">
+            <header><h1>Ajustes del Sistema</h1></header>
+            <div class="admin-card">
+                <h4 style="margin-bottom: 20px;">Seguridad y API</h4>
+                <p><strong>Clave Maestra Actual:</strong> **** (Último cambio hace 12 días)</p>
+                <hr style="margin: 20px 0; opacity: 0.1;">
+                <button class="btn-action" style="background: #333;">Cambiar Clave Acceso</button>
+                <button class="btn-action" style="background: #eb5757; margin-left: 10px;">Cerrar Sesión Staff</button>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Función de seguridad (Clave: admin123)
+        function checkPass() {
+            const pass = document.getElementById('admin-pass').value;
+            const error = document.getElementById('error-msg');
+            
+            if(pass === "admin123") {
+                document.getElementById('login-overlay').style.display = 'none';
+                localStorage.setItem('admin_auth', 'true');
+            } else {
+                error.style.display = 'block';
+            }
+        }
+
+        // Navegación
+        function showSection(id) {
+            document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-admin a').forEach(a => a.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // Modo oscuro
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Mantener sesión si ya entró (opcional)
+        window.onload = () => {
+            if(localStorage.getItem('admin_auth') === 'true') {
+                document.getElementById('login-overlay').style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
