@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sedes | CarLend Red Nacional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- VARIABLES DE COLOR (Espejo de tu Index) --- */
+        :root {
+            --brand-orange: #ff6600;
+            --brand-dark: #121212;
+            --white: #ffffff;
+            --bg-light: #f4f7f6;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            
+            --nav-bg: #000000;
+            --nav-text: #ffffff;
+            --body-bg: #f4f7f6;
+            --text-color: #121212;
+            --card-bg: #ffffff;
+            --border-color: #eee;
+        }
+
+        body.dark-mode {
+            --nav-bg: #1a1a1a;
+            --body-bg: #0a0a0a;
+            --text-color: #f4f7f6;
+            --card-bg: #161616;
+            --border-color: #333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        body { font-family: 'Open Sans', sans-serif; background-color: var(--body-bg); color: var(--text-color); transition: 0.3s; }
+        h1, h2, h3 { font-family: 'Lexend', sans-serif; letter-spacing: -0.5px; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            background: var(--nav-bg); padding: 15px 8%; display: flex;
+            justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 1000; transition: 0.3s;
+        }
+        nav img { height: 120px; width: auto; }
+        .nav-links a {
+            text-decoration: none; color: var(--nav-text); margin-left: 30px;
+            font-weight: 600; font-size: 0.9rem; transition: var(--transition);
+        }
+        .nav-links a:hover { color: var(--brand-orange); }
+
+        /* --- HERO SEDES --- */
+        .hero {
+            position: relative; height: 50vh; display: flex;
+            align-items: center; justify-content: center; color: var(--white);
+            text-align: center; background: var(--brand-dark); overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.8)), 
+                              url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center; z-index: 1;
+        }
+        .hero-content { position: relative; z-index: 2; }
+        .hero-content h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; text-transform: uppercase; }
+
+        /* --- GRID DE SEDES --- */
+        .section { padding: 80px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; }
+        .section-header .line { width: 60px; height: 4px; background: var(--brand-orange); margin: 15px auto; }
+
+        .sedes-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .sede-card {
+            background: var(--card-bg); border-radius: 20px; overflow: hidden;
+            border: 1px solid var(--border-color); transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .sede-card:hover { transform: translateY(-10px); border-color: var(--brand-orange); }
+        .sede-img { width: 100%; height: 220px; background-size: cover; background-position: center; }
+        
+        .sede-info { padding: 30px; }
+        .sede-info h3 { color: var(--brand-orange); font-size: 1.5rem; margin-bottom: 10px; }
+        .sede-tag { 
+            display: inline-block; padding: 4px 12px; background: rgba(255,102,0,0.1); 
+            color: var(--brand-orange); border-radius: 50px; font-size: 0.7rem; 
+            font-weight: 800; text-transform: uppercase; margin-bottom: 15px;
+        }
+        .sede-info p { font-size: 0.9rem; color: #666; margin-bottom: 20px; }
+        .sede-info ul { list-style: none; font-size: 0.85rem; border-top: 1px solid var(--border-color); padding-top: 15px; }
+        .sede-info ul li { margin-bottom: 8px; display: flex; align-items: center; }
+
+        /* BOTÓN DE MODO */
+        .theme-toggle {
+            background: transparent; border: 1px solid var(--brand-orange);
+            color: var(--brand-orange); padding: 8px 15px; border-radius: 5px;
+            cursor: pointer; margin-left: 20px; font-weight: bold; font-size: 0.7rem;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="./IMG/carlendlogo.png" alt="CarLend Logo">
+        <div class="nav-links">
+            <a href="index.html">Inicio</a>
+            <a href="flota.html">Flota</a>
+            <a href="sedes.html" style="color: var(--brand-orange);">Sedes</a>
+            <a href="cliente.html" style="background: var(--brand-orange); color: white; padding: 12px 25px; border-radius: 8px;">Área Cliente</a>
+            <button class="theme-toggle" onclick="toggleTheme()">MODO OSCURO</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>RED NACIONAL CARLEND</h1>
+            <p>Donde la excelencia técnica se encuentra con la carretera.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Nuestros Puntos de Conexión</h2>
+            <div class="line"></div>
+            <p>Infraestructura propia para garantizar la máxima calidad en cada entrega.</p>
+        </div>
+
+        <div class="sedes-grid">
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Centro de Operaciones</span>
+                    <h3>Guadalajara</h3>
+                    <p>Hub logístico y Centro Técnico Avanzado. Aquí revisamos cada motor bajo estándares de competición.</p>
+                    <ul>
+                        <li>📍 C, Mayor, 14, 7, 1º izquierda, 19004, Guadalajara</li>
+                        <li>📞 +34 949 23 12 98</li>
+                        <li>🕒 Lun-Vie: 09:00 - 21:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Flagship Store</span>
+                    <h3>Madrid</h3>
+                    <p>Ubicación premium en el distrito financiero. Recogida inmediata y servicios corporativos exclusivos.</p>
+                    <ul>
+                        <li>📍 C. de la Vinca, 1, 2ºB 28029 Madrid</li>
+                        <li>📞 +34 910 00 10 60</li>
+                        <li>🕒 24 Horas (Bajo reserva)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Hub Mediterráneo</span>
+                    <h3>Barcelona</h3>
+                    <p>Punto estratégico conectado con el puerto y aeropuerto. Especialistas en flota eléctrica y deportiva.</p>
+                    <ul>
+                        <li>📍 Avinguda Diagonal, 12, 08019, Barcelona</li>
+                        <li>📞 +34 930 20 44 30</li>
+                        <li>🕒 Lun-Dom: 07:00 - 23:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1559564484-e48b3e040ff4?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Sede Sur</span>
+                    <h3>Sevilla</h3>
+                    <p>Servicio premium en la capital andaluza. Especializados en vehículos familiares y SUVs de lujo.</p>
+                    <ul>
+                        <li>📍 Avenida de la Constitución, 12, 41003, Sevilla   </li>
+                        <li>📞 +34 954 83 23 50</li>
+                        <li>🕒 Lun-Sáb: 09:00 - 21:00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            const btn = document.querySelector('.theme-toggle');
+            btn.textContent = document.body.classList.contains('dark-mode') ? "MODO DÍA" : "MODO OSCURO";
+        }
+    </script>
+</body>
+</html>

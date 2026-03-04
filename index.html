@@ -1,135 +1,112 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarLend | Alquiler de Coches Premium</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CarLend | Flota de Coches Premium</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="index.css">
 </head>
-
 <body>
-
     <nav id="navbar">
-        <img src="./IMG/carlendlogo.png" alt="CarLend Logo">
-
+        <a href="index.html" aria-label="CarLend Inicio">
+            <img src="./IMG/carlendlogo.png" alt="CarLend Logo">
+        </a>
         <div class="nav-links">
             <a href="flota.html">Flota</a>
             <a href="#">Sedes</a>
             <a href="#">Ofertas</a>
-            <a href="cliente.html" class="btn-client">Área Cliente</a>
-            <button class="mode-toggle-btn" id="themeBtn">Modo Noche</button>
+            <a href="cliente.html" class="btn-cliente">Área Cliente</a>
+            <button class="modo-btn" id="botonTema">Modo Noche</button>
+        </div>
+        <div class="hamburguesa" id="menuHamburguesa">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
     </nav>
 
     <header class="hero">
-        <div class="hero-content">
-            <h1>LIBERTAD SIN LÍMITES</h1>
-            <p>Alquiler premium con confirmación inmediata y transparencia total</p>
+        <div class="contenido-hero">
+            <h1>Libertad sin límites</h1>
+            <p>Alquiler con confirmación inmediata y transparencia total</p>
+            <a href="flota.html" class="btn-hero">Ver Flota</a>
         </div>
     </header>
 
-    <section class="search-bar">
-        <div class="input-group">
-            <label>Punto de Recogida</label>
-            <select>
-                <option>Madrid - Aeropuerto</option>
-                <option>Guadalajara - Centro Técnico</option>
-                <option>Barcelona - Sants</option>
-                <option>Sevilla - Santa Justa</option>
-            </select>
-        </div>
+    <section class="carrusel">
+        <div class="pista-carrusel">
 
-        <div class="input-group">
-            <label>Fecha Recogida</label>
-            <input type="date">
-        </div>
-
-        <div class="input-group">
-            <label>Fecha Devolución</label>
-            <input type="date">
-        </div>
-
-        <div class="input-group">
-            <label>Categoría</label>
-            <select>
-                <option>Cualquier modelo</option>
-                <option>Deportivos</option>
-                <option>SUV & Familiar</option>
-                <option>Económicos</option>
-            </select>
-        </div>
-
-        <button class="btn-reserve">Buscar Coche</button>
-    </section>
-
-    <section id="flota" class="section">
-        <div class="section-header">
-            <h2>Nuestra Flota Premium</h2>
-            <div class="line"></div>
-            <p>Vehículos de última generación revisados bajo estándares de calidad Métrica v3.</p>
-        </div>
-
-        <div class="car-grid">
-
-            <div class="car-card">
-                <div class="car-img" style="background-image: url('IMG/Fondo-index.jpeg');"></div>
-                <div class="car-info">
-                    <h3>Performance GT S-Line</h3>
-                    <p class="price-tag">55.00€ <span>/ día</span></p>
-                    <p class="car-features">Seguro Premium · Cancelación Flexible</p>
+            <div class="tarjeta-coche">
+                <div class="imagen-coche" style="background-image:url('IMG/Mini-SE.jpg');"></div>
+                <div class="info-coche">
+                    <h3>MINI Electric Cooper SE</h3>
+                    <p>Compacto y totalmente eléctrico · Ideal para ciudad y recorridos cortos</p>
                 </div>
             </div>
 
-            <div class="car-card">
-                <div class="car-img" style="background-image: url('IMG/Ferrari-imagen.jpeg');"></div>
-                <div class="car-info">
-                    <h3>Grand SUV Explorer 4x4</h3>
-                    <p class="price-tag">72.50€ <span>/ día</span></p>
-                    <p class="car-features">Ideal para viajes largos · GPS Integrado</p>
+            <div class="tarjeta-coche">
+                <div class="imagen-coche" style="background-image:url('IMG/Ford-Expedition.jpg');"></div>
+                <div class="info-coche">
+                    <h3>Ford Expedition</h3>
+                    <p>7 plazas · Maletero XXL · Ideal para viajes en familia y aventuras</p>
                 </div>
             </div>
 
-            <div class="car-card">
-                <div class="car-img" style="background-image: url('IMG/Auto-Azul.jpeg');"></div>
-                <div class="car-info">
-                    <h3>City Urban Compact</h3>
-                    <p class="price-tag">29.90€ <span>/ día</span></p>
-                    <p class="car-features">Bajas emisiones · Fácil aparcamiento</p>
+            <div class="tarjeta-coche">
+                <div class="imagen-coche" style="background-image:url('IMG/BMW-Serie\ 3.jpg');"></div>
+                <div class="info-coche">
+                    <h3>BMW Serie 3 M3 Competition</h3>
+                    <p>Rendimiento extremo y diseño deportivo para conducción apasionante</p>
+                </div>
+            </div>
+
+            <div class="tarjeta-coche">
+                <div class="imagen-coche" style="background-image:url('IMG/Ferrari-488.jpg');"></div>
+                <div class="info-coche">
+                    <h3>Ferrari 488 GTB</h3>
+                    <p>Potencia pura y diseño icónico · Sensación de pista en cada curva</p>
+                </div>
+            </div>
+
+            <div class="tarjeta-coche">
+                <div class="imagen-coche" style="background-image:url('IMG/Porsche-911.jpg');"></div>
+                <div class="info-coche">
+                    <h3>Porsche 911 Carrera</h3>
+                    <p>Deportivo emblemático · Rendimiento y lujo para los apasionados</p>
                 </div>
             </div>
 
         </div>
     </section>
 
-    <section class="features-strip">
-        <div class="feature-item">
+    <section class="franja-caracteristicas">
+        <div class="item-caracteristica">
             <h4>200ms</h4>
             <p>Velocidad de Respuesta</p>
         </div>
-        <div class="feature-item">
+        <div class="item-caracteristica">
             <h4>0% Error</h4>
             <p>Precisión en Tarifas</p>
         </div>
-        <div class="feature-item">
-            <h4>Cloud</h4>
+        <div class="item-caracteristica">
+            <h4>☁️ Cloud</h4>
             <p>Infraestructura AWS</p>
         </div>
-        <div class="feature-item">
+        <div class="item-caracteristica">
             <h4>24/7</h4>
             <p>Soporte al Cliente</p>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-grid">
-
-            <div class="footer-col">
+        <div class="grid-footer">
+            <div class="col-footer">
                 <h4>CARLEND</h4>
-                <p>Tu plataforma líder en gestión de vehículos con tecnología de reserva circular infinita y seguridad garantizada.</p>
+                <p>Plataforma líder en gestión de vehículos con seguridad garantizada.</p>
             </div>
-
-            <div class="footer-col">
+            <div class="col-footer">
                 <h4>Servicios</h4>
                 <ul>
                     <li><a href="alquiler.html">Alquiler Corporativo</a></li>
@@ -137,62 +114,64 @@
                     <li><a href="seguro.html">Seguro a Todo Riesgo</a></li>
                 </ul>
             </div>
-
-            <div class="footer-col">
+            <div class="col-footer">
                 <h4>Soporte</h4>
                 <ul>
                     <li><a href="faq.html">Preguntas Frecuentes</a></li>
                     <li><a href="privacidad.html">Política de Privacidad</a></li>
                     <li><a href="mailto:contacto@carlend.es">Contacto</a></li>
-                    <li><a href="admin.html" style="opacity: 0.5;">Acceso Staff</a></li>
+                    <li><a href="admin.html" style="opacity:0.5;">Acceso Staff</a></li>
                 </ul>
             </div>
-
         </div>
-
-        <div class="footer-bottom">
-            &copy; 2026 CarLend S.L. - Eficiencia en cada kilómetro.
-        </div>
+        <div class="footer-abajo">&copy; 2026 CarLend S.L.</div>
     </footer>
 
+    <!-- JS -->
     <script>
         const navbar = document.getElementById("navbar");
-        const hero = document.querySelector(".hero");
-        const themeBtn = document.getElementById("themeBtn");
         const body = document.body;
-
-        function adjustHeroSpacing() {
-            hero.style.marginTop = navbar.offsetHeight + "px";
-        }
-
-        window.addEventListener("load", adjustHeroSpacing);
-        window.addEventListener("resize", adjustHeroSpacing);
+        const botonTema = document.getElementById("botonTema");
+        const menuHamburguesa = document.getElementById("menuHamburguesa");
+        const navLinks = document.querySelector(".nav-links");
 
         window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add("scrolled");
-            } else {
-                navbar.classList.remove("scrolled");
-            }
+            navbar.classList.toggle("scrolled", window.scrollY > 50);
         });
 
-        if (localStorage.getItem("theme") === "dark") {
+        if(localStorage.getItem("tema") === "oscuro"){
             body.classList.add("dark-mode");
-            themeBtn.textContent = "Modo Día";
+            botonTema.textContent = "Modo Día";
         }
 
-        themeBtn.addEventListener("click", () => {
+        botonTema.addEventListener("click", () => {
             body.classList.toggle("dark-mode");
+            botonTema.textContent = body.classList.contains("dark-mode") ? "Modo Día" : "Modo Noche";
+            localStorage.setItem("tema", body.classList.contains("dark-mode") ? "oscuro" : "claro");
+        });
 
-            if (body.classList.contains("dark-mode")) {
-                localStorage.setItem("theme", "dark");
-                themeBtn.textContent = "Modo Día";
-            } else {
-                localStorage.setItem("theme", "light");
-                themeBtn.textContent = "Modo Noche";
-            }
+        menuHamburguesa.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+        // Carrusel drag
+        const pista = document.querySelector(".pista-carrusel");
+        let isDown = false, startX, scrollLeft;
+
+        pista.addEventListener("mousedown", e => {
+            isDown = true;
+            startX = e.pageX - pista.offsetLeft;
+            scrollLeft = pista.scrollLeft;
+        });
+        pista.addEventListener("mouseleave", () => isDown=false);
+        pista.addEventListener("mouseup", () => isDown=false);
+        pista.addEventListener("mousemove", e => {
+            if(!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - pista.offsetLeft;
+            const walk = (x - startX)*2;
+            pista.scrollLeft = scrollLeft - walk;
         });
     </script>
-
 </body>
 </html>
