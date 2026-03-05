@@ -93,7 +93,7 @@ nav.scrolled {
 }
 
 nav img {
-    height:90px;
+    height:200px;
     transition: var(--transicion);
 }
 
