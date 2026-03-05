@@ -234,7 +234,7 @@
                     <h3>${titulo}</h3>
                     <p class="price">${precio}€ / día</p>
                     <p>${categoria.toUpperCase()} · ${plazas} plazas · ${car.ciudad || 'Madrid'}</p>
-                    <button class="btn-book">Reservar</button>
+                    <button class="btn-book" onclick="abrirDetalles('${car.id_vehiculo}')">Ver</button>
                 </div>
             </article>
           `;
@@ -294,7 +294,91 @@
           car.style.display = show ? 'block' : 'none';
       });
   });
+
+  let cocheSeleccionado = null;
+
+function abrirDetalles(id) {
+    // Buscamos el coche en la base de datos (VEHICULOS_DATA)
+    cocheSeleccionado = window.VEHICULOS_DATA.find(c => c.id_vehiculo == id);
+    
+    if(cocheSeleccionado) {
+        // Rellenar datos
+        document.getElementById('detalleTitulo').innerText = `${cocheSeleccionado.marca} ${cocheSeleccionado.modelo}`;
+        document.getElementById('detCat').innerText = cocheSeleccionado.categoria.toUpperCase();
+        document.getElementById('detPlazas').innerText = cocheSeleccionado.plazas;
+        document.getElementById('detCiudad').innerText = cocheSeleccionado.ciudad;
+        document.getElementById('detPrecio').innerText = `${cocheSeleccionado.precio_dia}€ / día`;
+        
+        // Imagen (usando la misma lógica de tu render)
+        const imgPath = cocheSeleccionado.imagen_url.replace(/^\.?[\\/]*IMG[\\/]/i, '');
+        document.getElementById('detalleImagen').style.backgroundImage = `url('${imgPath}')`;
+
+        // Mostrar Modal y resetear vistas
+        document.getElementById('modalCarLend').style.display = "flex";
+        volverADetalles();
+    }
+}
+
+function mostrarFormulario() {
+    document.getElementById('vistaDetalles').style.display = "none";
+    document.getElementById('vistaFormulario').style.display = "block";
+    document.getElementById('reservaCocheInfo').innerText = `Reserva para: ${cocheSeleccionado.marca} ${cocheSeleccionado.modelo}`;
+}
+
+function volverADetalles() {
+    document.getElementById('vistaDetalles').style.display = "block";
+    document.getElementById('vistaFormulario').style.display = "none";
+}
+
+function cerrarModal() {
+    document.getElementById('modalCarLend').style.display = "none";
+}
+
+// Manejo del envío final
+document.getElementById('formFinal').onsubmit = (e) => {
+    e.preventDefault();
+    alert(`¡Perfecto! Hemos registrado tu reserva para el ${cocheSeleccionado.marca}. Te contactaremos pronto.`);
+    cerrarModal();
+};
+
 </script>
+
+<div id="modalCarLend" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="cerrarModal()">&times;</span>
+        
+        <div id="vistaDetalles">
+            <div id="detalleImagen" class="detalle-img"></div>
+            <div class="modal-body">
+                <h2 id="detalleTitulo" style="color: var(--naranja-marca); font-size: 2rem;"></h2>
+                <div class="specs-container">
+                    <p><strong>Categoría:</strong> <span id="detCat"></span></p>
+                    <p><strong>Plazas:</strong> <span id="detPlazas"></span></p>
+                    <p><strong>Ubicación:</strong> <span id="detCiudad"></span></p>
+                    <p><strong>Precio:</strong> <span id="detPrecio" class="price"></span></p>
+                </div>
+                <button class="btn-book" style="margin-top:20px;" onclick="mostrarFormulario()">Reservar este vehículo</button>
+            </div>
+        </div>
+
+        <div id="vistaFormulario" style="display:none;">
+            <div class="modal-header">
+                <h2>Finalizar Reserva</h2>
+                <p id="reservaCocheInfo" style="opacity:0.7;"></p>
+            </div>
+            <form id="formFinal">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:20px;">
+                    <input type="text" placeholder="Nombre completo" required class="input-modal">
+                    <input type="text" placeholder="DNI" required class="input-modal">
+                    <input type="email" placeholder="Email" required class="input-modal">
+                    <input type="tel" placeholder="Teléfono" required class="input-modal">
+                </div>
+                <button type="submit" class="btn-book" style="margin-top:30px;">Confirmar Alquiler</button>
+                <button type="button" onclick="volverADetalles()" style="background:none; border:none; color:gray; cursor:pointer; width:100%; margin-top:10px;">Volver a detalles</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
