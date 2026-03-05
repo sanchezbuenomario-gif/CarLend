@@ -100,7 +100,7 @@
 </section>
 
 <main>
-    <section class="car-grid">
+    <section class="car-grid" id="carGrid">
 
         <article class="car-card" data-category="deportivo" data-passengers="2" data-price="140" data-transmission="manual" data-fuel="gasolina">
             <div class="car-img" style="background-image:url('IMG/Porsche-911.jpg');"></div>
@@ -192,8 +192,73 @@
     <div class="footer-abajo">&copy; 2026 CarLend S.L.</div>
 </footer>
 
+<script src="vehiculos.js"></script>
 <script>
   const botonTema = document.getElementById('botonTema');
+  const carGrid = document.getElementById('carGrid');
+
+  function normalizarCategoria(categoria) {
+      const c = String(categoria || '').toLowerCase();
+      if (c.includes('deport')) return 'deportivo';
+      if (c.includes('suv')) return 'suv';
+      return 'compacto';
+  }
+
+  function normalizarCombustible(categoria, combustible) {
+      if (combustible) return String(combustible).toLowerCase();
+      const c = String(categoria || '').toLowerCase();
+      if (c.includes('electr')) return 'electrico';
+      if (c.includes('hibr')) return 'hibrido';
+      return 'gasolina';
+  }
+
+  function renderCarsFromDb(cars) {
+      carGrid.innerHTML = cars.map(car => {
+          const categoria = normalizarCategoria(car.categoria);
+          const plazas = Number(car.plazas || 5);
+          const precio = Number(car.precio_dia || 0);
+          const transmision = String(car.transmision || 'manual').toLowerCase();
+          const combustible = normalizarCombustible(car.categoria, car.combustible);
+          const titulo = ((car.marca ? car.marca + ' ' : '') + (car.modelo || '')).trim();
+          const imagen = car.imagen_url
+              ? String(car.imagen_url).replace(/^\.?[\\/]*IMG[\\/]/i, '')
+              : '';
+          const estiloImagen = imagen
+              ? `background-image:url('${imagen}');`
+              : "background:#dcdcdc;";
+
+          return `
+            <article class="car-card" data-category="${categoria}" data-passengers="${plazas}" data-price="${precio}" data-transmission="${transmision}" data-fuel="${combustible}">
+                <div class="car-img" style="${estiloImagen}"></div>
+                <div class="car-content">
+                    <h3>${titulo}</h3>
+                    <p class="price">${precio}€ / día</p>
+                    <p>${categoria.toUpperCase()} · ${plazas} plazas · ${car.ciudad || 'Madrid'}</p>
+                    <button class="btn-book">Reservar</button>
+                </div>
+            </article>
+          `;
+      }).join('');
+  }
+
+  async function cargarFlotaDesdeDb() {
+      try {
+          const res = await fetch('/datos-coches', { cache: 'no-store' });
+          if (!res.ok) throw new Error('No disponible');
+          const cars = await res.json();
+          if (Array.isArray(cars) && cars.length) {
+              renderCarsFromDb(cars);
+              return;
+          }
+      } catch (e) {
+          if (Array.isArray(window.VEHICULOS_DATA) && window.VEHICULOS_DATA.length) {
+              renderCarsFromDb(window.VEHICULOS_DATA);
+          }
+      }
+  }
+
+  cargarFlotaDesdeDb();
+
   botonTema.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       botonTema.textContent = document.body.classList.contains('dark-mode') ? 'Modo Día' : 'Modo Noche';
