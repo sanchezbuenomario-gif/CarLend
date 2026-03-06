@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguridad de la Cuenta | CarLend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-orange: #ff6600;
+            --brand-dark: #121212;
+            --bg-light: #f4f7f6;
+            --safe-blue: #007bff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Open Sans', sans-serif; background: var(--bg-light); color: #333; }
+        
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        h1, h2, h3 { font-family: 'Lexend'; margin-bottom: 20px; }
+        h1 { font-size: 2rem; }
+        h2 { font-size: 1.2rem; color: var(--brand-dark); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 0.9rem; font-weight: 600; margin-bottom: 8px; color: #666; }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-save {
+            background: var(--brand-dark);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-save:hover { background: #333; }
+
+        .security-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: #eef7ff;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #d0e8ff;
+            margin-bottom: 25px;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #f9f9f9;
+        }
+
+        .session-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            font-size: 0.9rem;
+        }
+        .session-info { color: #888; }
+        .current { color: #28a745; font-weight: bold; font-size: 0.7rem; text-transform: uppercase; }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="{{ url_for('cliente') }}" style="text-decoration: none; color: var(--brand-orange); font-weight: 600; font-size: 0.9rem; padding: 40px 10px;">← Volver al dashboard</a>
+        
+        <h1 style="margin-top: 20px;">Seguridad de la Cuenta</h1>
+
+        <div class="security-badge">
+            <span style="font-size: 1.5rem;">🛡️</span>
+            <div>
+                <p style="font-weight: 700; color: var(--safe-blue); margin: 0;">Tu cuenta está protegida</p>
+                <p style="font-size: 0.8rem; margin: 0; color: #5b8fb9;">Cumplimos con el estándar de encriptación AES-256 de CarLend v3.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Actualizar Contraseña</h2>
+            <div class="form-group">
+                <label>Contraseña Actual</label>
+                <input type="password" placeholder="••••••••">
+            </div>
+            <div class="form-group">
+                <label>Nueva Contraseña</label>
+                <input type="password" placeholder="Mínimo 8 caracteres">
+            </div>
+            <div class="form-group">
+                <label>Confirmar Nueva Contraseña</label>
+                <input type="password" placeholder="Repite la contraseña">
+            </div>
+            <button class="btn-save">Guardar Cambios</button>
+        </div>
+
+        <div class="card">
+            <h2>Autenticación de Doble Factor (2FA)</h2>
+            <p style="font-size: 0.9rem; color: #666; margin-bottom: 15px;">Añade una capa extra de seguridad enviando un código a tu móvil al iniciar sesión.</p>
+            
+            <div class="toggle-container">
+                <div>
+                    <strong>Mensaje de Texto (SMS)</strong>
+                    <p style="font-size: 0.8rem; color: #999;">+34 6** *** *89</p>
+                </div>
+                <input type="checkbox" checked style="width: 20px; height: 20px; cursor: pointer;">
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Sesiones Activas</h2>
+            <p style="font-size: 0.8rem; color: #999; margin-bottom: 15px;">Dispositivos que han accedido a tu cuenta recientemente.</p>
+            
+            <div class="session-item">
+                <div>
+                    <strong>Chrome en Windows (PC Personal)</strong>
+                    <p class="session-info">Madrid, España • <span class="current">Sesión Actual</span></p>
+                </div>
+                <button style="border: none; background: none; color: #ff4444; cursor: pointer; font-size: 0.8rem;">Cerrar sesión</button>
+            </div>
+
+            <div class="session-item">
+                <div>
+                    <strong>App CarLend en iPhone 15</strong>
+                    <p class="session-info">Jaén, España • Hace 2 horas</p>
+                </div>
+                <button style="border: none; background: none; color: #ff4444; cursor: pointer; font-size: 0.8rem;">Cerrar sesión</button>
+            </div>
+        </div>
+
+        <p style="text-align: center; color: #bbb; font-size: 0.7rem; margin-top: 40px;">
+            CarLend Security Engine | Basado en IAS 9: Despliegue Seguro Cloud/AWS
+        </p>
+    </div>
+
+</body>
+</html>

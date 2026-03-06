@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corporativo | CarLend Business Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alquiler.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='IMG/carlendlogo.png') }}" alt="CarLend Logo">
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('flota') }}">Flota</a>
+            <a href="{{ url_for('seguro') }}">Seguros</a>
+            <a href="{{ url_for('cliente') }}" class="btn-cliente">Área Cliente</a>
+            <button class="modo-btn" id="botonTema">Modo Noche</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>SOLUCIONES B2B</h1>
+            <p>Infraestructura de movilidad de alto rendimiento para empresas líderes.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Ecosistema Corporativo</h2>
+            <div class="line"></div>
+            <p>Diseñado para optimizar costes operativos y maximizar la eficiencia de su equipo.</p>
+        </div>
+
+        <div class="grid-business">
+            <div class="biz-card">
+                <h3>01. Facturación Centralizada</h3>
+                <p>Unifique todos sus alquileres en una única factura mensual detallada por departamento o centro de costes.</p>
+            </div>
+            <div class="biz-card">
+                <h3>02. Gestión de Usuarios</h3>
+                <p>Panel de control administrativo para dar de alta empleados y establecer límites de gasto automáticos.</p>
+            </div>
+            <div class="biz-card">
+                <h3>03. Mantenimiento VIP</h3>
+                <p>Sustitución inmediata del vehículo y asistencia prioritaria técnica en menos de 15 minutos.</p>
+            </div>
+        </div>
+
+        <div class="cta-box">
+            <h2>¿Listo para optimizar su flota?</h2>
+            <p>Solicite una auditoría de movilidad gratuita con uno de nuestros consultores senior.</p>
+            <button class="btn-reserve">Hablar con un consultor</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-info">
+            <p>© 2026 CarLend Business Solutions. Todos los derechos reservados.</p>
+            <p>Contacto: contacto@carlend.com | +34 666 333 999</p>
+        </div>
+    </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/alquiler.js') }}"></script>
+</body>
+</html>

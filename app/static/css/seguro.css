@@ -1,0 +1,78 @@
+.hero {
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+    text-align: center;
+    background: #000;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.8)),
+        url('/static/img/Fondo-seguro.jpg') center/cover no-repeat;
+    background-size: cover;
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.section {
+    padding: 80px 8%;
+}
+
+.table-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    border: 1px solid var(--border-color);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.check {
+    color: #2ecc71;
+    font-weight: 800;
+}
+
+.cross {
+    color: #e74c3c;
+    font-weight: 800;
+}
+
+.highlight-row {
+    background: rgba(255, 102, 0, 0.05);
+    font-weight: 600;
+}
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid var(--brand-orange);
+    color: var(--brand-orange);
+    padding: 8px 15px;
+    cursor: pointer;
+    margin-left: 20px;
+    border-radius: 5px;
+}

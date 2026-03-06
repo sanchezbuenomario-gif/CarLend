@@ -1,0 +1,116 @@
+.dark-mode {
+    --texto-seccion: #ddd;
+    --naranja-marca: #ff9500;
+    --fondo-seccion: #1e1e1e;
+    --texto-principal: #fff;
+    --faq-bg: #2a2a2a;
+    --faq-border: #444;
+    --faq-shadow: rgba(0,0,0,0.6);
+}
+
+header {
+    background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.8)),
+                url('/static/img/Fondo-faq.jpg') center/cover no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 80px 8%;
+    text-align: center;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: -50px auto 80px;
+    background: var(--faq-bg);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px var(--faq-shadow);
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--faq-border);
+    padding: 20px 0;
+}
+
+.faq-question {
+    font-family: 'Lexend';
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto-seccion);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.faq-question:hover {
+    color: var(--naranja-marca);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    color: #aaa;
+    font-size: 0.95rem;
+    margin-top: 0;
+}
+
+details summary {
+    list-style: none;
+    outline: none;
+    cursor: pointer;
+}
+
+details summary::-webkit-details-marker { display: none; }
+
+details {
+    margin-bottom: 15px;
+    border-bottom: 1px solid var(--faq-border);
+    padding-bottom: 15px;
+}
+
+details[open] summary {
+    color: var(--naranja-marca);
+    margin-bottom: 10px;
+}
+
+summary {
+    font-family: 'Lexend';
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+summary::after {
+    content: '+';
+    font-size: 1.5rem;
+    color: var(--naranja-marca);
+}
+
+details[open] summary::after {
+    content: '-';
+}
+
+.cta-box {
+    background: var(--fondo-seccion);
+    color: var(--texto-principal);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.btn-contact {
+    display: inline-block;
+    margin-top: 15px;
+    background: var(--naranja-marca);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+}

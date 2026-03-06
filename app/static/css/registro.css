@@ -1,0 +1,84 @@
+.registro-section{
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:80vh;
+padding:60px 20px;
+}
+
+.registro-card{
+width:420px;
+padding:40px;
+border-radius:20px;
+background:var(--fondo-tarjeta);
+box-shadow:0 20px 50px rgba(0,0,0,0.08);
+}
+
+.registro-card h1{
+text-align:center;
+margin-bottom:10px;
+}
+
+.subtitulo{
+text-align:center;
+margin-bottom:30px;
+opacity:0.7;
+}
+
+.campo{
+margin-bottom:20px;
+display:flex;
+flex-direction:column;
+}
+
+.campo label{
+font-size:0.85rem;
+margin-bottom:6px;
+opacity:0.7;
+}
+
+.campo input{
+padding:12px;
+border-radius:8px;
+border:1px solid var(--borde-input);
+font-size:0.95rem;
+background:white;
+}
+
+body.dark-mode .campo input{
+background:#1a1a1a;
+color:white;
+}
+
+.btn-registro{
+width:100%;
+padding:12px;
+border:none;
+border-radius:30px;
+background:linear-gradient(45deg,#ff7f2a,#ff6600);
+color:white;
+font-weight:700;
+cursor:pointer;
+margin-top:10px;
+}
+
+.btn-registro:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(255,102,0,0.35);
+}
+
+.login-link{
+text-align:center;
+margin-top:20px;
+font-size:0.9rem;
+}
+
+.login-link a{
+color:var(--naranja-marca);
+font-weight:600;
+text-decoration:none;
+}
+
+.login-link a:hover{
+text-decoration:underline;
+}

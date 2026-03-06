@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Documentación | CarLend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&family=Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/documentacion.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='IMG/carlendlogo.png') }}" alt="CarLend Logo">
+        </a>
+
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('flota') }}">Vehículos</a>
+            <a href="{{ url_for('cliente') }}" class="btn-cliente">Panel Cliente</a>
+        </div>
+
+        <div class="hamburguesa">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <div class="doc-container tarjeta-coche">
+        <h1>Centro de Verificación</h1>
+        <p>Para conducir un vehículo CarLend, necesitamos validar tus documentos oficiales.</p>
+
+        <div class="doc-section">
+            <h3>1. Carnet de Conducir (Frontal)</h3>
+            <div class="status-verified">✓ DOCUMENTO VERIFICADO</div>
+            <p class="doc-date">Validado el 15/01/2026</p>
+        </div>
+
+        <div class="doc-section">
+            <h3>2. DNI / Pasaporte (Reverso)</h3>
+            <div class="upload-box" id="uploadBox">
+                <p>Haz clic para subir o arrastra la imagen aquí</p>
+                <span class="upload-hint">Formatos: JPG, PNG o PDF</span>
+                <input type="file" id="fileInput" accept=".jpg,.png,.pdf" style="display:none;">
+            </div>
+        </div>
+
+        <button class="btn-save btn-cliente">Actualizar Documentación</button>
+        <p class="cancel-link"><a href="{{ url_for('cliente') }}">Cancelar y volver</a></p>
+    </div>
+
+    <footer>
+        <div class="grid-footer">
+            <div class="col-footer">
+                <h4>CarLend</h4>
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Vehículos</a></li>
+                    <li><a href="#">Soporte</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-abajo">© 2026 CarLend. Todos los derechos reservados.</div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/documentacion.js') }}"></script>
+</body>
+</html>

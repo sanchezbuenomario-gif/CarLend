@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seguros | Protección Total CarLend</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/seguro.css') }}">
+</head>
+<body>
+    <nav>
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='IMG/carlendlogo.png') }}" alt="CarLend Logo">
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('alquiler') }}">Corporativo</a>
+            <button class="modo-btn" id="botonTema">Modo Noche</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1 style="font-size: 3rem;">PROTECCIÓN TOTAL</h1>
+            <p>Sin letra pequeña. Sin preocupaciones. Solo el placer de conducir.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>COBERTURAS INCLUIDAS</th>
+                        <th style="text-align: center;">BÁSICO</th>
+                        <th style="text-align: center; color: var(--brand-orange);">PREMIUM GOLD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Asistencia en carretera 24/7</td>
+                        <td style="text-align: center;" class="check">✔</td>
+                        <td style="text-align: center;" class="check">✔ VIP</td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td>Franquicia por daños (CDW)</td>
+                        <td style="text-align: center;">850€</td>
+                        <td style="text-align: center; color: var(--brand-orange);">0€ (SIN FRANQUICIA)</td>
+                    </tr>
+                    <tr>
+                        <td>Protección de Neumáticos y Lunas</td>
+                        <td style="text-align: center;" class="cross">✘</td>
+                        <td style="text-align: center;" class="check">✔</td>
+                    </tr>
+                    <tr>
+                        <td>Conductor adicional gratuito</td>
+                        <td style="text-align: center;" class="cross">✘</td>
+                        <td style="text-align: center;" class="check">✔</td>
+                    </tr>
+                    <tr>
+                        <td>Pérdida de llaves y error de combustible</td>
+                        <td style="text-align: center;" class="cross">✘</td>
+                        <td style="text-align: center;" class="check">✔</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/seguro.js') }}"></script>
+</body>
+</html>

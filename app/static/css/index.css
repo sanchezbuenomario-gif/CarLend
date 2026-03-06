@@ -1,0 +1,210 @@
+.seccion {
+    padding:130px 8%;
+}
+
+.encabezado-seccion {
+    text-align:center;
+    margin-bottom:80px;
+    color: var(--texto-seccion);
+}
+
+.encabezado-seccion h2 {
+    font-size:3rem;
+    margin-bottom:15px;
+    text-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+
+.linea {
+    width:80px;
+    height:4px;
+    background: var(--naranja-marca);
+    margin:20px auto;
+    border-radius:4px;
+}
+
+.encabezado-seccion p {
+    max-width:600px;
+    margin:auto;
+    opacity:0.75;
+}
+
+.carrusel {
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto 80px;
+    max-width: 1240px;
+    border-radius: 20px;
+    padding: 20px 0;    
+    background: var(--fondo-tarjeta);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    perspective: 1200px;
+}
+
+.carrusel-cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 0 24px;
+}
+
+.carrusel-cabecera h2 {
+    font-size: clamp(1.6rem, 2vw, 2rem);
+    color: var(--texto-principal);
+    font-weight: 600;
+}
+
+.carrusel-pista-outer {
+    overflow: hidden;
+}
+
+.pista-carrusel {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 10px 24px 30px;
+    scrollbar-width: none;
+    cursor: grab;
+    transition: gap 0.3s ease;
+}
+
+.pista-carrusel::-webkit-scrollbar {
+    display: none;
+}
+
+.pista-carrusel.is-dragging {
+    cursor: grabbing;
+}
+
+.tarjeta-coche {
+    flex: 0 0 clamp(260px, 28%, 340px);
+    scroll-snap-align: start;
+    background: var(--fondo-tarjeta);
+    border-color: rgba(255,255,255,0.2);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+}
+
+.tarjeta-coche:hover {
+    box-shadow: 0 28px 60px rgba(0,0,0,0.18);
+    z-index: 10;
+}
+
+.imagen-coche {
+    height: 220px;
+    background-size: cover;
+    background-position: center;
+    border-bottom: 3px solid var(--naranja-marca);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.tarjeta-coche:hover .imagen-coche {
+    transform: scale(1.08);
+    filter: brightness(1.15);
+}
+
+.info-coche {
+    padding: 16px 18px;
+    text-align: left;
+    color: #343a40;
+}
+
+.info-coche h3 {
+    font-size: 1.25rem;
+    margin-bottom: 6px;
+    color: var(--texto-principal);
+}
+
+.info-coche p {
+    font-size: 0.95rem;
+    color: var(--texto-principal);
+    opacity: 0.9;
+}
+
+.carrusel-controles {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    transform: translateY(-50%);
+    padding: 0 10px;
+    z-index: 20;
+}
+
+.carrusel-controles .carrusel-btn {
+    pointer-events: all;
+    width: 48px;
+    height: 48px;
+    background: var(--naranja-marca);    
+    color: #fff;
+    font-size: 1.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.carrusel-controles .carrusel-btn:hover {
+    transform: scale(1.2);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.3);
+}
+
+.carrusel-controles .carrusel-btn:active {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+}
+
+.pista-carrusel::after {
+    content: '';
+    flex: 0 0 20px;
+}
+
+.franja-caracteristicas {
+    background: var(--fondo-principal);
+    color: var(--texto-principal);
+    padding:90px 8%;
+    display:flex;
+    justify-content:space-around;
+    flex-wrap:wrap;
+    gap:45px;
+    text-align:center;
+}
+
+.item-caracteristica h4 {
+    font-size:2.4rem;
+    color: var(--naranja-marca);
+    margin-bottom:10px;
+}
+
+.item-caracteristica p {
+    font-size:0.85rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    opacity:0.75;
+}
+
+@media(max-width:1024px){
+    .pista-carrusel { gap:16px; padding:10px 16px 24px; }
+    .tarjeta-coche { flex-basis: 45%; }
+    .carrusel-cabecera h2 { font-size: 1.5rem; }
+}
+
+@media(max-width:768px){
+    .franja-caracteristicas { flex-direction:column; gap:30px; }
+    .pista-carrusel { gap:12px; padding:10px 12px 20px; }
+    .tarjeta-coche { flex-basis: 82%; }
+    .carrusel-cabecera h2 { font-size: 1.4rem; }
+    .carrusel-btn { width: 36px; height: 36px; font-size: 1.25rem; }
+}

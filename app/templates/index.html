@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarLend | Flota de Coches Premium</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="{{ url_for('index') }}" aria-label="CarLend Inicio">
+        <img src="{{ url_for('static', filename='img/carlendlogo.png') }}" alt="CarLend Logo">
+    </a>
+
+    <div class="nav-links">
+        <a href="{{ url_for('flota') }}">Flota</a>
+        <a href="{{ url_for('sedes') }}">Sedes</a>
+        <a href="{{ url_for('cliente') }}" class="btn-cliente">Área Cliente</a>
+        <a href="{{ url_for('registro') }}" class="btn-cliente">Registrarse</a>
+        <button class="modo-btn" id="botonTema">Modo Noche</button>
+    </div>
+
+    <div class="hamburguesa" id="menuHamburguesa">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+</nav>
+
+<header class="hero">
+    <div class="contenido-hero">
+        <h1>Libertad sin límites</h1>
+        <p>Alquiler con confirmación inmediata y transparencia total</p>
+        <a href="{{ url_for('flota') }}" class="btn-hero">Ver Flota</a>
+    </div>
+</header>
+
+<section class="carrusel" aria-label="Vehículos destacados" role="region">
+    <div class="carrusel-cabecera">
+        <h2>Destacados de la semana</h2>
+    </div>
+
+    <div class="carrusel-pista-outer">
+        <div class="pista-carrusel" id="pistaCarrusel">
+            <div class="tarjeta-coche" role="group" aria-label="MINI Electric Cooper SE">
+                <div class="imagen-coche" style="background-image:url('{{ url_for('static', filename='img/Mini-SE.jpg') }}');"></div>
+                <div class="info-coche">
+                    <h3>MINI Electric Cooper SE</h3>
+                    <p>Compacto y totalmente eléctrico · Ideal para ciudad</p>
+                </div>
+            </div>
+
+            <div class="tarjeta-coche" role="group" aria-label="Ford Expedition">
+                <div class="imagen-coche" style="background-image:url('{{ url_for('static', filename='img/Ford-Expedition.jpg') }}');"></div>
+                <div class="info-coche">
+                    <h3>Ford Expedition</h3>
+                    <p>7 plazas · Maletero XXL · Ideal para viajes familiares</p>
+                </div>
+            </div>
+
+            <div class="tarjeta-coche" role="group" aria-label="BMW Serie 3 M3 Competition">
+                <div class="imagen-coche" style="background-image:url('{{ url_for('static', filename='img/BMW-Serie 3.jpg') }}');"></div>
+                <div class="info-coche">
+                    <h3>BMW Serie 3 M3 Competition</h3>
+                    <p>Rendimiento extremo y diseño deportivo</p>
+                </div>
+            </div>
+
+            <div class="tarjeta-coche" role="group" aria-label="Ferrari 488 GTB">
+                <div class="imagen-coche" style="background-image:url('{{ url_for('static', filename='img/Ferrari-488.jpg') }}');"></div>
+                <div class="info-coche">
+                    <h3>Ferrari 488 GTB</h3>
+                    <p>Potencia pura y diseño icónico</p>
+                </div>
+            </div>
+
+            <div class="tarjeta-coche" role="group" aria-label="Porsche 911 Carrera">
+                <div class="imagen-coche" style="background-image:url('{{ url_for('static', filename='img/Porsche-911.jpg') }}');"></div>
+                <div class="info-coche">
+                    <h3>Porsche 911 Carrera</h3>
+                    <p>Deportivo emblemático · lujo y rendimiento</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="carrusel-controles" aria-label="Controles del carrusel">
+        <button class="carrusel-btn" id="carruselPrev" aria-label="Vehículo anterior">‹</button>
+        <button class="carrusel-btn" id="carruselNext" aria-label="Vehículo siguiente">›</button>
+    </div>
+</section>
+
+<section class="franja-caracteristicas">
+    <div class="item-caracteristica">
+        <h4>200ms</h4>
+        <p>Velocidad de Respuesta</p>
+    </div>
+    <div class="item-caracteristica">
+        <h4>0% Error</h4>
+        <p>Precisión en Tarifas</p>
+    </div>
+    <div class="item-caracteristica">
+        <h4>☁️ Cloud</h4>
+        <p>Infraestructura AWS</p>
+    </div>
+    <div class="item-caracteristica">
+        <h4>24/7</h4>
+        <p>Soporte al Cliente</p>
+    </div>
+</section>
+
+<footer>
+    <div class="grid-footer">
+        <div class="col-footer">
+            <h4>CARLEND</h4>
+            <p>Plataforma líder en gestión de vehículos con seguridad garantizada.</p>
+        </div>
+        <div class="col-footer">
+            <h4>Servicios</h4>
+            <ul>
+                <li><a href="{{ url_for('alquiler') }}">Alquiler Corporativo</a></li>
+                <li><a href="{{ url_for('flota') }}">Gestión de Flotas</a></li>
+                <li><a href="{{ url_for('seguro') }}">Seguro a Todo Riesgo</a></li>
+            </ul>
+        </div>
+        <div class="col-footer">
+            <h4>Soporte</h4>
+            <ul>
+                <li><a href="{{ url_for('faq') }}">Preguntas Frecuentes</a></li>
+                <li><a href="{{ url_for('privacidad') }}">Política de Privacidad</a></li>
+                <li>
+                    <a href="https://mail.google.com/mail/?view=cm&to=contacto@carlend.es">Contacto</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="footer-abajo">
+        © 2026 CarLend S.L.
+    </div>
+</footer>
+
+<script src="{{ url_for('static', filename='js/index.js') }}"></script>
+
+</body>
+</html>

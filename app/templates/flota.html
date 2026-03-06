@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarLend | Flota</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/flota.css') }}">
+</head>
+<body>
+    <nav id="navbar">
+        <a href="{{ url_for('index') }}">
+            <img src="{{ url_for('static', filename='img/carlendlogo.png') }}" alt="CarLend Logo">
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('sedes') }}">Sedes</a>
+            <a href="{{ url_for('cliente') }}" class="btn-cliente">Área Cliente</a>
+            <button class="modo-btn" id="botonTema">Modo Noche</button>
+        </div>
+    </nav>
+
+    <section class="search-bar">
+        <div class="input-group">
+            <label for="pickup">Punto de Recogida</label>
+            <select id="pickup">
+                <option>Madrid</option>
+                <option>Barcelona</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label for="pickup-date">Fecha Recogida</label>
+            <input type="date" id="pickup-date">
+        </div>
+        <div class="input-group">
+            <label for="return-date">Fecha Devolución</label>
+            <input type="date" id="return-date">
+        </div>
+        <button class="btn-reserve">Buscar Coche</button>
+    </section>
+
+    <section class="filters">
+        <div class="input-group">
+            <label for="filter-category">Categoría</label>
+            <select id="filter-category">
+                <option value="all">Todas</option>
+                <option value="deportivo">Deportivo</option>
+                <option value="suv">SUV</option>
+                <option value="sedan">Sedán</option>
+                <option value="compacto">Compacto</option>
+                <option value="familiar">Familiar</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="filter-brand">Marca</label>
+            <select id="filter-brand">
+                <option value="all">Todas</option>
+                <option value="audi">Audi</option>
+                <option value="bmw">BMW</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="ford">Ford</option>
+                <option value="toyota">Toyota</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="filter-passengers">Pasajeros</label>
+            <select id="filter-passengers">
+                <option value="all">Todos</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="5+">5+</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="filter-price">Precio máximo (€)</label>
+            <input type="number" id="filter-price" placeholder="Ej: 100">
+        </div>
+
+        <div class="input-group">
+            <label for="filter-transmission">Transmisión</label>
+            <select id="filter-transmission">
+                <option value="all">Todos</option>
+                <option value="manual">Manual</option>
+                <option value="automatico">Automático</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label for="filter-engine">Tipo de motor</label>
+            <select id="filter-engine">
+                <option value="all">Todos</option>
+                <option value="gasolina">Gasolina</option>
+                <option value="diesel">Diésel</option>
+                <option value="electrico">Eléctrico</option>
+                <option value="hibrido">Híbrido</option>
+            </select>
+        </div>
+    </section>
+
+    <main>
+        <section class="car-grid">
+            {% for car in vehiculos %}
+            <article class="car-card" 
+                data-categoria="{{ car.categoria }}" 
+                data-marca="{{ car.marca }}" 
+                data-pasajeros="{{ car.pasajeros }}" 
+                data-precio="{{ car.precio }}" 
+                data-transmision="{{ car.transmision }}" 
+                data-motor="{{ car.tipo_motor }}">
+                
+                <div class="car-img" style="background-image:url('{{ url_for('static', filename='img/' ~ car.imagen) }}');"></div>
+                
+                <div class="car-content">
+                    <h3>{{ car.marca }} {{ car.modelo }}</h3>
+                    <p class="price">{{ car.precio }}€ / día</p>
+                    
+                    <button class="btn-book" onclick="abrirDetalles('{{ car.marca }}', '{{ car.modelo }}', '{{ car.precio }}', '{{ url_for('static', filename='img/' ~ car.imagen) }}', '{{ car.categoria }}', '{{ car.pasajeros }}')">Ver</button>
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+
+    <footer>
+        <div class="grid-footer">
+            <div class="col-footer">
+                <h4>CARLEND</h4>
+                <p>Plataforma líder en gestión de vehículos con seguridad garantizada.</p>
+            </div>
+            <div class="col-footer">
+                <h4>Servicios</h4>
+                <ul>
+                    <li><a href="{{ url_for('alquiler') }}">Alquiler Corporativo</a></li>
+                    <li><a href="{{ url_for('flota') }}">Gestión de Flotas</a></li>
+                    <li><a href="{{ url_for('seguro') }}">Seguro a Todo Riesgo</a></li>
+                </ul>
+            </div>
+            <div class="col-footer">
+                <h4>Soporte</h4>
+                <ul>
+                    <li><a href="{{ url_for('faq') }}">Preguntas Frecuentes</a></li>
+                    <li><a href="{{ url_for('privacidad') }}">Política de Privacidad</a></li>
+                    <li><a href="mailto:contacto@carlend.es">Contacto</a></li>
+                    <li><a href="{{ url_for('admin') }}" style="opacity:0.5;">Acceso Staff</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-abajo">&copy; 2026 CarLend S.L.</div>
+    </footer>
+    <script src="{{ url_for('static', filename='js/flota.js') }}"></script>
+
+    <div id="modalCarLend" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="cerrarModal()">&times;</span>
+            
+            <div id="vistaDetalles">
+                <div id="detalleImagen" class="detalle-img"></div>
+                <div class="modal-body">
+                    <h2 id="detalleTitulo" style="color: var(--naranja-marca); font-size: 2rem; margin-bottom:10px;"></h2>
+                    <div class="specs-container">
+                        <p><strong>Categoría:</strong> <span id="detCat"></span></p>
+                        <p><strong>Plazas:</strong> <span id="detPlazas"></span></p>
+                        <p><strong>Ubicación:</strong> <span id="detCiudad"></span></p>
+                        <p><strong>Precio:</strong> <span id="detPrecio" class="price"></span></p>
+                    </div>
+                    <button class="btn-book" style="margin-top:20px;" onclick="mostrarFormulario()">Reservar este vehículo</button>
+                </div>
+            </div>
+
+            <div id="vistaFormulario" style="display:none;">
+                <div class="modal-body">
+                    <h2 style="color: var(--naranja-marca);">Finalizar Reserva</h2>
+                    <p id="reservaCocheInfo" style="opacity:0.7; margin-bottom:20px;"></p>
+                    <form id="formFinal">
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                            <input type="text" placeholder="Nombre completo" required class="input-modal">
+                            <input type="text" placeholder="DNI" required class="input-modal">
+                            <input type="email" placeholder="Email" required class="input-modal">
+                            <input type="tel" placeholder="Teléfono" required class="input-modal">
+                        </div>
+                        <button type="submit" class="btn-book" style="margin-top:30px;">Confirmar Alquiler</button>
+                        <button type="button" onclick="volverADetalles()" style="background:none; border:none; color:gray; cursor:pointer; width:100%; margin-top:15px; font-weight:600;">← Volver a detalles</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div id="vistaFormulario" style="display:none;">
+            <div class="modal-header">
+                <h2>Finalizar Reserva</h2>
+                <p id="reservaCocheInfo" style="opacity:0.7;"></p>
+            </div>
+            <form id="formFinal">
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; margin-top:20px;">
+                    <input type="text" placeholder="Nombre completo" required class="input-modal">
+                    <input type="text" placeholder="DNI" required class="input-modal">
+                    <input type="email" placeholder="Email" required class="input-modal">
+                    <input type="tel" placeholder="Teléfono" required class="input-modal">
+                </div>
+                <button type="submit" class="btn-book" style="margin-top:30px;">Confirmar Alquiler</button>
+                <button type="button" onclick="volverADetalles()" style="background:none; border:none; color:gray; cursor:pointer; width:100%; margin-top:10px;">Volver a detalles</button>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="{{ url_for('static', filename='js/flota.js') }}"></script>
+</body>
+</html>

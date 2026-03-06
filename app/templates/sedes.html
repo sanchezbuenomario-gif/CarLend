@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sedes | CarLend Red Nacional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/global.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/sedes.css') }}">
+</head>
+<body>
+
+    <nav>
+        <a href="{{ url_for('index') }}" aria-label="CarLend Inicio">
+            <img src="{{ url_for('static', filename='img/carlendlogo.png') }}" alt="CarLend Logo">
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Inicio</a>
+            <a href="{{ url_for('flota') }}">Flota</a>
+            <a href="{{ url_for('cliente') }}" class="btn-cliente">Área Cliente</a>
+            <button class="modo-btn" id="botonTema">Modo Noche</button>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>RED NACIONAL CARLEND</h1>
+            <p>Donde la excelencia técnica se encuentra con la carretera.</p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="section-header">
+            <h2>Nuestros Puntos de Conexión</h2>
+            <div class="line"></div>
+            <p>Infraestructura propia para garantizar la máxima calidad en cada entrega.</p>
+        </div>
+
+        <div class="sedes-grid">
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Centro de Operaciones</span>
+                    <h3>Guadalajara</h3>
+                    <p>Hub logístico y Centro Técnico Avanzado. Aquí revisamos cada motor bajo estándares de competición.</p>
+                    <ul>
+                        <li>📍 C, Mayor, 14, 7, 1º izquierda, 19004, Guadalajara</li>
+                        <li>📞 +34 949 23 12 98</li>
+                        <li>🕒 Lun-Vie: 09:00 - 21:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Flagship Store</span>
+                    <h3>Madrid</h3>
+                    <p>Ubicación premium en el distrito financiero. Recogida inmediata y servicios corporativos exclusivos.</p>
+                    <ul>
+                        <li>📍 C. de la Vinca, 1, 2ºB 28029 Madrid</li>
+                        <li>📞 +34 910 00 10 60</li>
+                        <li>🕒 24 Horas (Bajo reserva)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1583422409516-2895a77efded?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Hub Mediterráneo</span>
+                    <h3>Barcelona</h3>
+                    <p>Punto estratégico conectado con el puerto y aeropuerto. Especialistas en flota eléctrica y deportiva.</p>
+                    <ul>
+                        <li>📍 Avinguda Diagonal, 12, 08019, Barcelona</li>
+                        <li>📞 +34 930 20 44 30</li>
+                        <li>🕒 Lun-Dom: 07:00 - 23:00</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="sede-card">
+                <div class="sede-img" style="background-image: url('https://images.unsplash.com/photo-1559564484-e48b3e040ff4?auto=format&fit=crop&q=80&w=800');"></div>
+                <div class="sede-info">
+                    <span class="sede-tag">Sede Sur</span>
+                    <h3>Sevilla</h3>
+                    <p>Servicio premium en la capital andaluza. Especializados en vehículos familiares y SUVs de lujo.</p>
+                    <ul>
+                        <li>📍 Avenida de la Constitución, 12, 41003, Sevilla   </li>
+                        <li>📞 +34 954 83 23 50</li>
+                        <li>🕒 Lun-Sáb: 09:00 - 21:00</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="{{ url_for('static', filename='js/sedes.js') }}"></script>
+</body>
+</html>
